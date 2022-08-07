@@ -1,36 +1,34 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.authMaster')
+@section('title', 'Confirm Password')
+@section('content')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
+		<body class="px-4">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+				<main class="flex min-h-screen flex-col items-center justify-center">
+						<x-auth-validation-errors class="mb-4" :errors="$errors" />
+						<div class="form-wrapper w-[450px] bg-slate-800">
 
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
+								<form class="space-y-4" method="POST" action="{{ route('password.confirm') }}">
+										@csrf
+										<h3 class="text-center">Confirm Password</h3>
 
-            <!-- Password -->
-            <div>
-                <x-label for="password" :value="__('Password')" />
+										<div>
+												<label>
+														password
+														<input type="password" placeholder="type your password" class="form-control" onclick="this.value=''"
+																name="password">
+												</label>
+										</div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+										<div>
+												<button type="submit" class="btn">send</button>
+										</div>
 
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+										<p class="text-center text-sm">
+												This is a secure area of the application. Please confirm your password before continuing.
+										</p>
+								</form>
+
+						</div>
+				</main>
+		@endsection
