@@ -81,4 +81,8 @@
 	.info-list-items {
 		@apply flex items-center gap-1 border-b-4 border-dotted border-slate-800 pb-2 text-left;
 	}
+
+	.logo {
+		@apply rounded-full w-16 h-16;
+	}
 }

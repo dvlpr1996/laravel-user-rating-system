@@ -1,59 +1,94 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.authMaster')
+@section('title', 'register')
+@section('content')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+		<body class="p-4 sm:p-0">
+				<main class="flex min-h-screen flex-col items-center justify-center">
+						<x-auth-validation-errors class="mb-4" :errors="$errors" />
+						<div class="form-wrapper w-[450px] bg-slate-800 px-5 py-2">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+							<div class="text-center mb-7">
+								<img src="https://fakeimg.pl/50x50/ff0000/" alt="" class="logo block mx-auto">
+								<span>Join the forum</span>
+							</div>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+								<form class="space-y-4" method="POST" action="{{ route('register.store') }}">
+										@csrf
+										<div class="flex flex-col items-center justify-between gap-2 sm:flex-row">
+												<div class=w-full>
+														<label>
+																first name
+																<span class="text-sm text-rose-600">
+																		<i class="ri-asterisk"></i>
+																</span>
+																<input type="text" placeholder="first name" name="fname" class="form-control" required minlength="3"
+																		maxlength="32" value="{{ old('fname') }}" onclick="this.value=''">
+														</label>
+												</div>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
+												<div class=w-full>
+														<label>
+																last name
+																<span class="text-sm text-rose-600">
+																		<i class="ri-asterisk"></i>
+																</span>
+																<input type="text" placeholder="last name" name="lname" class="form-control" required minlength="3"
+																		maxlength="64" value="{{ old('lname') }}" onclick="this.value=''">
+														</label>
+												</div>
+										</div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+										<div>
+												<label>
+													occupation
+														<span class="text-sm text-rose-600">
+																<i class="ri-asterisk"></i>
+														</span>
+														<input type="text" placeholder="occupation" name="skill" class="form-control" required maxlength="512"
+																value="{{ old('skill') }}" onclick="this.value=''">
+												</label>
+										</div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+										<div>
+												<label>
+														email
+														<span class="text-sm text-rose-600">
+																<i class="ri-asterisk"></i>
+														</span>
+														<input type="email" placeholder="email address" name="email" class="form-control" required
+																value="{{ old('email') }}" onclick="this.value=''">
+												</label>
+										</div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+										<div class="flex flex-col items-center justify-between gap-2 sm:flex-row">
+												<div class=w-full>
+														<label>
+																password
+																<span class="text-sm text-rose-600">
+																		<i class="ri-asterisk"></i>
+																</span>
+																<input type="password" placeholder="password" name="pass" class="form-control" required minlength="6"
+																		maxlength="128" onclick="this.value=''">
+														</label>
+												</div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
+												<div class=w-full>
+														<label>
+																confirm password
+																<span class="text-sm text-rose-600">
+																		<i class="ri-asterisk"></i>
+																</span>
+																<input type="password" placeholder="confirm password" name="pass_confirmation" class="form-control"
+																		required minlength="6" maxlength="128" onclick="this.value=''">
+														</label>
+												</div>
+										</div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+										<button type="submit" class="btn py-3">sign in</button>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
+										<a href="{{ route('login.create') }}" class="my-5 text-sm">already have an account</a>
+								</form>
+						</div>
+				</main>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+		@endsection
