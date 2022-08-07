@@ -1,39 +1,37 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.authMaster')
+@section('title', 'verify email address')
+@section('content')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-        </div>
+		<body class="px-4">
+				@if (session('status') == 'verification-link-sent')
+						<div class="mb-4 text-sm font-medium text-green-600">
+								{{ __('A new verification link has been sent to the email address you provided during registration.') }}
+						</div>
+				@endif
+				<main class="flex min-h-screen flex-col items-center justify-center">
+						<div class="form-wrapper w-[450px] space-y-5 bg-slate-800">
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        @endif
+								@if (session('status') == 'verification-link-sent')
+										<div class="mb-4 rounded-lg bg-green-300 p-4 text-center text-sm font-medium text-green-900">
+												A new verification link has been sent to the email address you provided during registration.
+										</div>
+								@endif
 
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
+								<h3 class="text-center">verify your email address</h3>
 
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
-            </form>
+								<p class="text-center text-sm leading-6 tracking-wider">
+										Thanks for signing up! Before getting started, could you verify your email address by clicking on the above
+										button
+								</p>
 
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+								<form class="space-y-4" method="POST" action="{{ route('verification.send') }}">
+										@csrf
+										<div>
+												<button type="submit" class="btn">send Verification Email</button>
+										</div>
+								</form>
 
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
-        </div>
-    </x-auth-card>
-</x-guest-layout>
+								<a href="{{ route('logout') }}" class="inline-block">logout</a>
+						</div>
+				</main>
+		@endsection
