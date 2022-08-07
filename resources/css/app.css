@@ -1,3 +1,84 @@
+@charset "UTF-8";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+	html {
+		/* font-family: Oxygen, sans-serif; */
+	}
+
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	::-webkit-scrollbar-track {
+		@apply bg-slate-900;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #1E293B;
+		border-radius: 5px;
+	}
+
+	::placeholder {
+		@apply capitalize text-sm;
+	}
+
+	body {
+		@apply bg-slate-900 text-gray-100 capitalize px-4;
+	}
+
+	.master-body {
+		@apply max-w-5xl mx-auto;
+	}
+
+	h1 {
+		@apply text-4xl font-semibold;
+	}
+
+	h2 {
+		@apply text-3xl font-medium;
+	}
+
+	h3 {
+		@apply text-2xl font-normal;
+	}
+
+	p {
+		@apply text-lg font-normal leading-8;
+	}
+
+	input[type="checkbox"] {
+		@apply accent-[#1E293B] w-4 h-4 align-sub rounded-md;
+	}
+
+	label {
+		@apply capitalize text-sm select-none;
+	}
+
+	a:not('nav') {
+		@apply text-cyan-400 hover:underline;
+	}
+
+}
+
+@layer components {
+	.form-wrapper {
+		@apply w-[305px] p-5 rounded-lg;
+	}
+
+	.form-control {
+		@apply p-2 rounded-md w-full block appearance-none bg-slate-800 focus:outline-none mt-2 text-gray-400;
+	}
+
+	.btn {
+		@apply block px-4 py-2 font-medium leading-5 text-center transition-colors duration-150 w-full rounded-lg bg-sky-400 text-base hover:bg-sky-500 text-slate-100 focus:outline-none focus:ring-2 cursor-pointer;
+	}
+
+	.info-list-items {
+		@apply flex items-center gap-1 border-b-4 border-dotted border-slate-800 pb-2 text-left;
+	}
+}
