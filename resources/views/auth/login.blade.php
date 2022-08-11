@@ -11,6 +11,10 @@
 						<main class="flex min-h-screen flex-col items-center justify-center">
 
 								<div class="form-wrapper w-[300px] bg-slate-800">
+									<div class="text-center mb-7">
+										<img src="https://fakeimg.pl/50x50/ff0000/" alt="" class="logo block mx-auto">
+										<span>welcome back</span>
+									</div>
 										<form class="space-y-3" method="POST" action={{ route('login.store') }}>
 												@csrf
 
