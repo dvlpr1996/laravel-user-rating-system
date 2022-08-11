@@ -4,7 +4,9 @@
 
 		<body class="p-4 sm:p-0">
 				<main class="flex min-h-screen flex-col items-center justify-center">
+
 						<x-auth-validation-errors class="mb-4" :errors="$errors" />
+
 						<div class="form-wrapper w-[450px] bg-slate-800 px-5 py-2">
 
 							<div class="text-center mb-7">
@@ -84,9 +86,9 @@
 												</div>
 										</div>
 
-										<button type="submit" class="btn py-3">sign in</button>
+										<button type="submit" class="btn py-3">registered</button>
 
-										<a href="{{ route('login.create') }}" class="my-5 text-sm">already have an account</a>
+										<a href="{{ route('login.create') }}" class="my-5 text-sm inline-block">already have an account</a>
 								</form>
 						</div>
 				</main>

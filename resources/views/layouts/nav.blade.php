@@ -1,12 +1,23 @@
-{{-- @auth --}}
-		<nav class="flex items-center justify-between rounded-lg bg-slate-800 p-4 font-medium text-gray-300">
-				<div class="space-x-3">
-					<a href="{{ route('profile.index') }}" class="hover:text-white">profile</a>
-						<a href="{{ route('topics.index') }}" class="hover:text-white">home</a>
+<nav class="flex items-center justify-between rounded-lg bg-slate-800 p-4 font-medium text-gray-300">
+		<div class="space-x-3">
+				<a href="{{ route('topics.index') }}" class="hover:text-white">home</a>
+
+				@auth
+						<a href="{{ route('profile.index', auth()->user()->slug) }}" class="hover:text-white">profile</a>
+				@endauth
+		</div>
+
+		@guest
+				<div class="flex items-center gap-2">
+						<a href="{{ route('login.create') }}" class="btn w-[initial]">login</a>
+						<a href="{{ route('register.create') }}" class="btn w-[initial]">register</a>
 				</div>
+		@endguest
+
+		@auth
 				<div x-data="dropdown" x-on:click.away="away()" class="relative">
 						<button x-on:click="toggle()" class="hover:text-white">
-								user name
+								{{ ucwords(auth()->user()->fullName) }}
 								<i class="ri-arrow-down-s-fill align-middle"></i>
 						</button>
 						<div x-show="open" x-transition.duration.500ms
@@ -32,5 +43,5 @@
 
 						</div>
 				</div>
-		</nav>
-{{-- @endauth --}}
+		@endauth
+</nav>
