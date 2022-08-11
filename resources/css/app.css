@@ -32,7 +32,7 @@
 	}
 
 	.master-body {
-		@apply max-w-5xl mx-auto;
+		@apply max-w-7xl mx-auto;
 	}
 
 	h1 {
@@ -59,9 +59,9 @@
 		@apply capitalize text-sm select-none;
 	}
 
-	a:not('nav') {
+	/* a:not('nav') {
 		@apply text-cyan-400 hover:underline;
-	}
+	} */
 
 }
 
@@ -84,5 +84,13 @@
 
 	.logo {
 		@apply rounded-full w-16 h-16;
+	}
+
+	.hr {
+		@apply border-b-2 border-b-red-500 pb-3;
+	}
+
+	.tag {
+		@apply inline-block py-[2px] px-3 bg-red-600 text-center select-none cursor-pointer align-middle rounded-lg;
 	}
 }
