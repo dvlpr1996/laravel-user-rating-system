@@ -2,27 +2,10 @@
 @section('title', 'Home')
 
 <body class="mx-auto max-w-7xl">
-		<nav class="flex items-center justify-between rounded-lg bg-slate-800 p-4 font-medium text-gray-300">
+		<nav class="rounded-lg bg-slate-800 p-4 font-medium text-gray-300">
 				<div class="flex items-center gap-2">
-						<img src="{{ url('img/logo.png') }}" alt="Laravel User Rating System" class="logo">
+						<img src="{{ url('img/logo.png') }}" alt="logo" class="logo">
 						<span class="hidden sm:block">Laravel User Rating System</span>
-				</div>
-
-				<div class="flex items-center gap-2">
-						@guest
-								<a href="{{ route('login.create') }}" class="btn">login</a>
-								<a href="{{ route('register.create') }}" class="btn">register</a>
-						@endguest
-
-						@auth
-								<a href="{{ route('profile.show', auth()->user()->slug) }}" class="btn">
-										<i class="ri-user-line mr-1 align-baseline"></i>profile
-								</a>
-
-								<a href="{{ route('logout') }}" class="btn">
-										<i class="ri-logout-circle-line mr-1 align-baseline"></i>logout
-								</a>
-						@endauth
 				</div>
 		</nav>
 
@@ -30,7 +13,7 @@
 
 				<section class="space-y-5 text-center">
 						<h1>Laravel User Rating System</h1>
-						<a href="https://github.com/dvlpr1996/dvlpr1996" title="dvlpr1996 github account"
+						<a href="https://github.com/dvlpr1996/laravel-user-rating-system" title="dvlpr1996 github account"
 								class="btn mx-auto w-1/6 py-2 px-9">
 								<i class="ri-github-fill text-xl"></i>
 						</a>
@@ -41,6 +24,11 @@
 						<p class="capitalize">
 								this laravel project is a Laravel User Rating System (online discussion site). where user can hold conversations in the form of posted messages and they can get badge based on their xp
 						</p>
+
+						<a href="{{ route('topics.index') }}"
+								class="btn mx-auto w-1/6 py-2 px-9">
+								go to app
+						</a>
 				</section>
 
 				<section class="space-y-10 text-center">
