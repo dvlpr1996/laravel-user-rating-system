@@ -3,11 +3,6 @@
 @section('content')
 
 		<body class="px-4">
-				@if (session('status') == 'verification-link-sent')
-						<div class="mb-4 text-sm font-medium text-green-600">
-								{{ __('A new verification link has been sent to the email address you provided during registration.') }}
-						</div>
-				@endif
 				<main class="flex min-h-screen flex-col items-center justify-center">
 						<div class="form-wrapper w-[450px] space-y-5 bg-slate-800">
 
