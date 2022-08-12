@@ -9,7 +9,7 @@
 						@endif
 						<header class="mt-5 rounded-lg bg-slate-800 p-5">
 								<div class="flex flex-col items-center gap-3">
-										<img src="#" alt="#"
+										<img src="{{ $userName->Gravatar }}" alt="{{ $userName->fullName }}"
 												class="h-48 w-48 rounded-full object-fill outline-none outline-2 outline-offset-4 outline-slate-900">
 
 										<h1>{{ $userName->fullName }}</h1>
@@ -18,12 +18,12 @@
 								</div>
 
 								<div class="mt-5 flex items-center justify-between">
-										@if($userName->slug == auth()->user()->slug)
+										@if($userName->slug == isset(auth()->user()->slug))
 												<a href="{{ route('topics.create') }}" class="btn w-[initial]">
 													new topics
 												</a>
 										@endif
-										<p>date of join {{ $userName->created_at }}</p>
+										<p>date of join {{ $userName->CreatedAt }}</p>
 								</div>
 						</header>
 

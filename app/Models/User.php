@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -70,8 +71,14 @@ class User extends Authenticatable implements MustVerifyEmail
 		return "{$this->fname} {$this->lname}";
 	}
 
-	public function getAvatarAttribute()
+	public function getGravatarAttribute()
 	{
-		return "{$this->fname} {$this->lname}";
+		$hash = md5(strtolower($this->attributes['email']));
+		return "http://s.gravatar.com/avatar/$hash";
+	}
+
+	public function getCreatedAtAttribute()
+	{
+			return (new Carbon($this->attributes['created_at']))->diffForHumans();
 	}
 }
