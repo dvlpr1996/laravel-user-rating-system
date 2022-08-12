@@ -29,6 +29,7 @@
 										</p>
 								</form>
 
+								<a href="{{ route('logout') }}" class="inline-block">logout</a>
 						</div>
 				</main>
 		@endsection

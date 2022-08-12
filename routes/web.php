@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::view('/', 'home')->name('home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified' , 'password.confirm'])->group(function () {
 	Route::get('/profile/{userName:slug}', [ProfileController::class, 'index'])->name('profile.index');
 	Route::get('/topics/create', [ProfileController::class, 'create'])->name('topics.create');
 });
