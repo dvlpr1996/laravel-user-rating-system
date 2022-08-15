@@ -16,13 +16,18 @@
 
 		@auth
 				<div x-data="dropdown" x-on:click.away="away()" class="relative">
+					<i class="fas fa-tachometer-alt mr-1"></i>
 						<button x-on:click="toggle()" class="hover:text-white">
 								{{ ucwords(auth()->user()->fullName) }}
-								<i class="ri-arrow-down-s-fill align-middle"></i>
 						</button>
 						<div x-show="open" x-transition.duration.500ms
 								class="border-1 absolute top-8 right-0 z-20 hidden min-w-[170px] space-y-3 rounded-lg border-slate-600 bg-slate-800 p-2"
 								x-bind:class="{ 'hidden': !open }">
+
+								<a href="{{ route('app.index') }}" class="m-2 block text-left hover:text-white">
+									<i class="ri-user-fill mr-1 align-middle"></i>
+									dashboard
+							</a>
 
 								<a href="{{ route('profile.index', auth()->user()->slug) }}" class="m-2 block text-left hover:text-white">
 										<i class="ri-user-fill mr-1 align-middle"></i>
