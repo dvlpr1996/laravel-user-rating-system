@@ -49,9 +49,9 @@
 								<h2 class="mb-2">discussion room</h2>
 								<span>A place where your questions become answers</span>
 
-									<div>
-										 {{-- todo : filter with select --}}
-									</div>
+								<div>
+										{{-- todo : filter with select --}}
+								</div>
 								<div class="mt-5 grid grid-cols-12 gap-5">
 										<div class="col-span-12 xl:col-span-9">
 												<form action="#">
@@ -69,52 +69,9 @@
 								</div>
 
 								<section class="my-5 space-y-3">
-										@forelse ($topics as $topic)
-												<div class="rounded-lg bg-slate-800 p-4 font-medium text-gray-300">
-
-														<div class="flex items-center justify-between">
-																<div class="flex items-center gap-2">
-																		<img src="{{ $topic->user->gravatar }}" alt="{{ $topic->user->fullname }}"
-																				class="h-12 w-12 rounded-full">
-																		<div class="flex flex-col">
-																				<a href="{{ route('profile.index', $topic->user->slug) }}" class="text-base">
-																						{{ $topic->user->fullname }}
-																				</a>
-																				<p class="text-sm">{{ $topic->CreatedAt }}
-																						by
-																						<a href="{{ route('profile.index', $topic->user->slug) }}">{{ $topic->user->fullname }}</a>
-																				</p>
-																		</div>
-																</div>
-																<div class="flex gap-2">
-																		<div class="select-none p-3 text-center">
-																				<p class="text-sm">answer</p>
-																				{{-- <p>{{ $topic->answers }}</p> --}}
-																		</div>
-																		<div class="select-none p-3 text-center">
-																				<p class="text-sm">visit</p>
-																				<p>5</p>
-																		</div>
-																</div>
-														</div>
-
-														<p class="hr">
-																<a href="#">
-																		{{ $topic->title }}
-																</a>
-														</p>
-
-														<div class="mt-5 space-x-3">
-																<a href="{{ route('categories.index', $topic->category->slug) }}" class="tag">
-																		{{ $topic->category->name }}
-																</a>
-														</div>
-
-												</div>
-										@empty
-												<p>no topics here!!! create once</p>
-										@endforelse
+										<x-all-topics></x-all-topics>
 								</section>
+
 						</section>
 				</main>
 		@endsection
