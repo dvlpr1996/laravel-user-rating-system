@@ -5,3 +5,5 @@
 				<p>no topics here yet !! create once</p>
 		</div>
 @endforelse
+
+	{{ $topics->links('layouts.pagination') }}

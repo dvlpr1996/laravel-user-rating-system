@@ -8,10 +8,10 @@ use Illuminate\View\Component;
 class allTopics extends Component
 {
 	public $topics;
-	
+
 	public function __construct()
 	{
-		$this->topics = Topic::all();
+		$this->topics = Topic::paginate(5);
 	}
 
 	public function render()
