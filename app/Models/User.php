@@ -61,11 +61,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	// 	return $this->hasOne(Badge_User::class);
 	// }
 
-	// public function answers()
-	// {
-	// 	return $this->hasMany(Answers::class);
-	// }
-
 	public function getFullNameAttribute()
 	{
 		return "{$this->fname} {$this->lname}";
@@ -81,4 +76,5 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 			return (new Carbon($this->attributes['created_at']))->diffForHumans();
 	}
+
 }

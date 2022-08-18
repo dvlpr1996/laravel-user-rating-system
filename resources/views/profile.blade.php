@@ -4,9 +4,6 @@
 
 		<body class="master-body">
 				<main>
-						@if (session('success'))
-								{{ session('status') }}
-						@endif
 						<header class="mt-5 rounded-lg bg-slate-800 p-5">
 								<div class="flex flex-col items-center gap-3">
 										<img src="{{ $userName->Gravatar }}" alt="{{ $userName->fullName }}"
@@ -18,10 +15,12 @@
 								</div>
 
 								<div class="mt-5 flex items-center justify-between">
-										@if($userName->slug == isset(auth()->user()->slug))
-												<a href="{{ route('topics.create') }}" class="btn w-[initial]">
-													new topics
-												</a>
+										@if (isset(auth()->user()->slug))
+												@if ($userName->slug == auth()->user()->slug)
+														<a href="{{ route('topics.create') }}" class="btn w-[initial]">
+																new topics
+														</a>
+												@endif
 										@endif
 										<p>date of join {{ $userName->CreatedAt }}</p>
 								</div>
@@ -29,13 +28,40 @@
 
 						<div class="mt-5 rounded-lg bg-slate-800 p-5">
 								<ul class="flex flex-col flex-wrap items-center justify-evenly gap-5 text-gray-300 sm:flex-row lg:flex-nowrap">
-										{{-- fix : with js add | and control for responsive mode --}}
-										<li class="text-2xl">xp 500</li>
-										<li class="text-2xl">topics 500</li>
-										<li class="text-2xl">answers 500</li>
-										<li class="text-2xl">best answers 500</li>
+										<li class="text-2xl">
+												<a href="{{ route('profile.index', $userName->slug) }}">
+														topics :
+														{{ $userName->user_stat->topic_count ?? 0}}
+												</a>
+										</li>
+										<li class="text-2xl">
+												<a href="{{ route('profile.badge', $userName->slug) }}">
+														xp :
+														{{ $userName->user_stat->xp ?? 0 }}
+												</a>
+										</li>
+
+										<li class="text-2xl">
+											answers : {{ $userName->user_stat->answer_count ?? 0}}
+										</li>
+										<li class="text-2xl">
+											best answers : {{ $userName->user_stat->best_count ?? 0}}
+										</li>
 								</ul>
 						</div>
+
+
+						<section class="my-5 space-y-5">
+								<h2>🚚all topics</h2>
+								@forelse ($userTopics as $topic)
+										<x-topic :topic="$topic"></x-topic>
+								@empty
+										<div class="rounded-lg bg-slate-500 p-5 text-center">
+												<!!>no topics here yet for this category!! create once</p>
+										</div>
+								@endforelse
+								{{ $userTopics->links('layouts.pagination') }}
+						</section>
 
 				</main>
 		@endsection

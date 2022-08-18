@@ -24,9 +24,9 @@
 								class="border-1 absolute top-8 right-0 z-20 hidden min-w-[170px] space-y-3 rounded-lg border-slate-600 bg-slate-800 p-2"
 								x-bind:class="{ 'hidden': !open }">
 
-								<a href="{{ route('app.index') }}" class="m-2 block text-left hover:text-white">
+								<a href="{{ route('topics.create') }}" class="m-2 block text-left hover:text-white">
 									<i class="ri-user-fill mr-1 align-middle"></i>
-									dashboard
+									add topics
 							</a>
 
 								<a href="{{ route('profile.index', auth()->user()->slug) }}" class="m-2 block text-left hover:text-white">
