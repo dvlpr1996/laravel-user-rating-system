@@ -16,10 +16,11 @@
 	</div>
 
 	<p>&copy; <span id="year"></span>
-		laravel user rating system. All rights reserved
+			laravel user rating system. All rights reserved
 	</p>
 </footer>
 @vite('resources/js/app.js')
+@include('sweetalert::alert')
 </body>
 
 </html>
