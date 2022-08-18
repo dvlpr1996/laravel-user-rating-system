@@ -6,7 +6,6 @@
 				<main class="flex min-h-screen flex-col items-center justify-center">
 
 						<x-auth-session-status class="mb-4" :status="session('status')" />
-						<x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 						<div class="form-wrapper w-[450px] bg-slate-800">
 

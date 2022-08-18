@@ -5,8 +5,6 @@
 		<body class="p-4 sm:p-0">
 				<main class="flex min-h-screen flex-col items-center justify-center">
 
-						<x-auth-validation-errors class="mb-4" :errors="$errors" />
-
 						<div class="form-wrapper w-[450px] bg-slate-800 px-5 py-2">
 
 							<div class="text-center mb-7">

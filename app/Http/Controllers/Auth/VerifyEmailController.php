@@ -26,6 +26,6 @@ class VerifyEmailController extends Controller
 		}
 
 		return redirect()->intended(RouteServiceProvider::HOME . auth()->user()->slug . '?verified=1')
-			->with('Your email Successfully verified');
+			->withToastSuccess('Your email Successfully verified');
 	}
 }

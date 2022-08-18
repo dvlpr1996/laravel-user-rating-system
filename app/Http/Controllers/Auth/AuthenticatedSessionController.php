@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller
 		$request->session()->regenerate();
 
 		return redirect()->intended(RouteServiceProvider::HOME . auth()->user()->slug)
-		->with('welcome back, dear' . auth()->user()->fullName);
+			->withToastSuccess('welcome back, dear' . ' ' . auth()->user()->fullName);
 	}
 
 	/**
@@ -41,6 +41,6 @@ class AuthenticatedSessionController extends Controller
 
 		$request->session()->regenerateToken();
 
-		return redirect()->route('topics.index')->with('You Successfully Logout');
+		return redirect()->route('topics.index')->withToastSuccess('You Successfully Logout');
 	}
 }

@@ -30,6 +30,6 @@ class ConfirmablePasswordController extends Controller
 		$request->session()->put('auth.password_confirmed_at', time());
 
 		return redirect()->intended(RouteServiceProvider::HOME . auth()->user()->slug)
-		->with('success','Your password Successfully verified');
+		->withToastSuccess('Your password Successfully verified');
 	}
 }

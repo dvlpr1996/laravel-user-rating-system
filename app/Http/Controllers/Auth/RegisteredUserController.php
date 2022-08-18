@@ -44,6 +44,6 @@ class RegisteredUserController extends Controller
 		Auth::login($user);
 
 		return redirect(RouteServiceProvider::HOME . auth()->user()->slug)
-			->with('success', __('success_register'));
+			->withToastSuccess( 'Welcome To Online Discussion Room');
 	}
 }
