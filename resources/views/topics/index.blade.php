@@ -18,6 +18,7 @@
 												@endforeach
 										</ul>
 								</div>
+								
 								<div class="hr space-y-5">
 										<h4>top xp</h4>
 										@forelse ($user_stats as $userStats)
@@ -34,14 +35,10 @@
 										@empty
 										@endforelse
 								</div>
+
 								<div class="space-y-3">
 										<h4>statistics</h4>
-										<ul class="ml-2 space-y-3">
-												{{-- <li>count topics {{ $topics->alltopics }}</li> --}}
-												<li>count reply 54</li>
-												<li>count best 54</li>
-												<li>count user 54</li>
-										</ul>
+										<x-statistics></x-statistics>
 								</div>
 						</aside>
 
@@ -64,7 +61,7 @@
 										</div>
 
 										<div class="col-span-12 xl:col-span-3">
-												<a href="#" class="btn w-[initial]">new topic</a>
+												<a href="{{ route('topics.create') }}" class="btn w-[initial]">new topic</a>
 										</div>
 								</div>
 
