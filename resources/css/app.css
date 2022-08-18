@@ -106,4 +106,14 @@
 	.nav-bar {
 		@apply shadow flex justify-between items-center p-3;
 	}
+
+	.modal-wrapper {
+		@apply fixed inset-0 z-30 flex items-center justify-center overflow-auto shadow-md 
+		  bg-slate-400 p-6 bg-opacity-20;
+	}
+
+	.modal-content {
+		@apply p-5 mx-auto space-y-2 shadow-md w-80 bg-slate-800 rounded-md;
+	}
+
 }

@@ -1,1 +1,51 @@
-document.querySelector("#year").innerHTML = (new Date).getFullYear();
+let year = document.querySelector("#year");
+if (year) {
+	year.innerHTML = (new Date).getFullYear();
+}
+
+window.addEventListener("load", () => {
+	window.addEventListener("offline", () => {
+		alert("you are seem offline. check your internet connection");
+	});
+});
+
+// let sidebarToggle = document.querySelector('#sidebarToggle');
+// let sidebar = document.querySelector('#sidebar');
+// let sm = window.matchMedia("(max-width: 640px)");
+
+// if (sidebar) {
+// 	sidebarToggle.addEventListener('click', () => {
+// 		(sidebar.style.display === "none") ? sidebar.style.display = "block"
+// 			: sidebar.style.display = "none";
+// 	});
+
+// 	sm.addEventListener('change', (event) => {
+// 		if (event.matches) {
+// 			sidebar.style.display = "none";
+// 		} else {
+// 			sidebar.style.display = "block"
+// 		}
+// 	});
+// }
+
+// let deleteTopics = document.querySelector('#delete-topics');
+
+// if (deleteTopics) {
+
+// 	deleteTopics.addEventListener('click', (e) => {
+// 		e.defaultPrevented;
+// 		Swal.fire({
+// 			title: 'Are you sure?',
+// 			text: "You won't be able to revert this!",
+// 			icon: 'warning',
+// 			showCancelButton: true,
+// 			confirmButtonColor: '#3085d6',
+// 			cancelButtonColor: '#d33',
+// 			confirmButtonText: 'Yes, delete it!'
+// 		}).then((result) => {
+// 			if (result.isConfirmed) {
+// 				deleteTopics.click();
+// 			}
+// 		})
+// 	});
+// }

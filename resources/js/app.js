@@ -1,3 +1,3 @@
 import './bootstrap';
-import './custom.js';
 import './alpine.js';
+import './custom.js';
