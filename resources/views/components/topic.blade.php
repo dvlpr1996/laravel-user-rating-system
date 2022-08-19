@@ -42,51 +42,16 @@
 						{{ $topic->category->name }}
 				</a>
 
-				<div>
-						<div class="space-x-3" x-data="modal" @keydown.escape="close()">
-								<a href="#" x-on:click="toggle()">report</a>
+				<div class="flex gap-3">
+					
+						<x-report></x-report>
 
-								<div class="modal-wrapper" x-show="showModal" style="display: none;">
-										<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
-												x-bind="transition">
-												<div class="flex justify-between text-center">
-														<h3 class="text-left">report as a</h3>
-														<span class="cursor-pointer" x-on:click="close()">X</span>
-												</div>
-												<div>
-														<form action="#">
-																<div>
-																		<label><input type="radio" name="report[]" class="form-control">
-																				spam sapm spam sapm
-																		</label>
-																</div>
-																<div>
-																		<label><input type="radio" name="report[]" class="form-control">
-																				spam sapm spam sapm
-																		</label>
-																</div>
-																<div>
-																		<label><input type="radio" name="report[]" class="form-control">
-																				spam sapm spam sapm
-																		</label>
-																</div>
-																<div>
-																		<label><input type="radio" name="report[]" class="form-control">
-																				spam sapm spam sapm
-																		</label>
-																</div>
-														</form>
-												</div>
-										</div>
-								</div>
-
-								@if (isset(auth()->user()->id))
-										@if ($topic->user->id == auth()->user()->id)
-												<a href="{{ route('topics.delete', $topic->id) }}" onclick="return confirm('Are you sure?')">delete
-												</a>
-										@endif
+						@if (isset(auth()->user()->id))
+								@if ($topic->user->id == auth()->user()->id)
+										<a href="{{ route('topics.delete', $topic->id) }}" onclick="return confirm('Are you sure?')">delete
+										</a>
 								@endif
-						</div>
+						@endif
 
 				</div>
 		</div>
