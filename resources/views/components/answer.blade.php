@@ -1,5 +1,17 @@
-@forelse ($topic->answers as $answer)
-		<div class="rounded-lg bg-slate-800 p-4 font-medium text-gray-300">
+@forelse ($answers as $answer)
+		@php
+				$isActive = $answer->status ? true : false;
+		@endphp
+
+		<div @class([
+				'rounded-lg',
+				'bg-slate-800',
+				'p-4',
+				'font-medium',
+				'text-gray-300',
+				'border-2' => $isActive,
+				'border-green-800' => $isActive,
+		])>
 
 				<div class="flex items-center justify-between">
 						<div class="flex items-center gap-2">
@@ -15,7 +27,9 @@
 								</div>
 						</div>
 
-						<a href="#" class="tag text-sm">best answer</a>
+						@if ($answer->status)
+								<span class="tag py-2 text-sm">best answer</span>
+						@endif
 
 				</div>
 
@@ -26,20 +40,34 @@
 								<a href="#">5</a>
 						</div>
 
-						<p class="hr my-5">{{ $answer->body }}</p>
+						<p @class([
+								'hr',
+								'my-5',
+								'border-b-2' => $isActive,
+								'border-green-800' => $isActive,
+						])>{{ $answer->body }}</p>
 				</div>
 
 				<div class="mt-5 flex justify-between">
-						<a href="{{ route('categories.index', $topic->category->slug) }}" class="tag">
-								{{ $topic->category->name }}
+						<a href="{{ route('categories.index', $answer->topic->category->slug) }}" class="tag">
+								{{ $answer->topic->category->name }}
 						</a>
 
-						<a href="#">report</a>
+						<div class="flex gap-3">
+
+							<x-report></x-report>
+
+								@if (isset(auth()->user()->id))
+										@if ($answer->user_id == auth()->user()->id)
+												<a href="{{ route('answer.delete', $answer->id) }}" onclick="return confirm('Are you sure?')">delete
+												</a>
+										@endif
+								@endif
+						</div>
 				</div>
 
 		</div>
 @empty
-
 		@guest
 				<div class="rounded-lg bg-slate-500 p-5 text-center">
 						<p>
@@ -72,3 +100,5 @@
 				</section>
 		@endauth
 @endforelse
+
+{{ $answers->links('layouts.pagination') }}

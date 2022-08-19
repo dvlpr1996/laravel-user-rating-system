@@ -19,13 +19,13 @@
 
 						<section class="w-full md:w-9/12 lg:w-10/12">
 
-								<section class="my-5 space-y-3">
+								<section class="my-5">
 										<x-topic :topic="$topic"></x-topic>
 								</section>
 
-
-								<section>
-									<x-answer :topic="$topic"></x-answer>
+								<section class="my-5 space-y-5">
+										<h2>🚝answers</h2>
+										<x-answer :answers="$answers"></x-answer>
 								</section>
 						</section>
 				</main>
