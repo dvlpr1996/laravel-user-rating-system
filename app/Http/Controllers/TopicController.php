@@ -25,4 +25,10 @@ class TopicController extends Controller
 	{
 		return view('topics.details', compact('topic'));
 	}
+
+	public function delete(Topic $topic)
+	{
+		Topic::where('id', $topic->id)->delete();
+		return back()->withToastSuccess('Your topics Successfully deleted');
+	}
 }

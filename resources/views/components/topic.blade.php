@@ -79,13 +79,14 @@
 												</div>
 										</div>
 								</div>
-						</div>
 
-						@if (isset(auth()->user()->id))
-								@if ($topic->user->id == auth()->user()->id)
-										<a href="{{ route('topics.delete', $topic->id) }}" id="delete-topics">delete</a>
+								@if (isset(auth()->user()->id))
+										@if ($topic->user->id == auth()->user()->id)
+												<a href="{{ route('topics.delete', $topic->id) }}" onclick="return confirm('Are you sure?')">delete
+												</a>
+										@endif
 								@endif
-						@endif
+						</div>
 
 				</div>
 		</div>

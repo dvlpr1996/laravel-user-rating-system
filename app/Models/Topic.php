@@ -31,9 +31,4 @@ class Topic extends Model
 	{
 		return (new Carbon($this->attributes['created_at']))->diffForHumans();
 	}
-
-	public function getAllTopicsAttribute()
-	{
-		return "567";
-	}
 }
