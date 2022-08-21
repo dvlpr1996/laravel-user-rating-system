@@ -8,7 +8,7 @@
 						<div class="form-wrapper w-[450px] bg-slate-800 px-5 py-2">
 
 							<div class="text-center mb-7">
-								<img src="https://fakeimg.pl/50x50/ff0000/" alt="" class="logo block mx-auto">
+								<x-app-logo class="mx-auto block"></x-app-logo>
 								<span>Join the forum</span>
 							</div>
 

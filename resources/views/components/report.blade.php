@@ -1,13 +1,17 @@
 <div class="space-x-3" x-data="modal" @keydown.escape="close()">
-	<a href="#" x-on:click="toggle()">report</a>
+	<a href="#" x-on:click="toggle()">
+		<i class="fas fa-flag"></i>
+		report
+	</a>
 
 	<div class="modal-wrapper" x-show="showModal" style="display: none;">
 			<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
 					x-bind="transition">
-					<div class="hr flex justify-between text-center">
+					<div class="flex justify-between text-center">
 							<h3 class="text-left">report</h3>
 							<span class="cursor-pointer" x-on:click="close()">X</span>
 					</div>
+					<hr>
 					<div>
 							<form action="{{ route('reports.create') }}">
 									@csrf

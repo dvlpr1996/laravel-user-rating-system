@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
 	html {
 		/* font-family: Oxygen, sans-serif; */
@@ -47,6 +46,10 @@
 		@apply text-2xl font-normal;
 	}
 
+	h4 {
+		@apply text-xl font-normal;
+	}
+
 	p {
 		@apply text-lg font-normal leading-8;
 	}
@@ -58,11 +61,6 @@
 	label {
 		@apply capitalize text-sm select-none;
 	}
-
-	/* a:not('nav') {
-		@apply text-cyan-400 hover:underline;
-	} */
-
 }
 
 @layer components {
@@ -71,7 +69,7 @@
 	}
 
 	.form-control {
-		@apply p-2 rounded-md w-full block appearance-none bg-slate-800 focus:outline-none mt-2 text-gray-400;
+		@apply p-2 rounded-md w-full block appearance-none bg-slate-800 mt-2 text-gray-400;
 	}
 
 	.btn {
@@ -91,7 +89,7 @@
 	}
 
 	.tag {
-		@apply inline-block py-[2px] px-3 bg-red-600 text-center select-none cursor-pointer align-middle rounded-lg;
+		@apply inline-block py-1 px-4 bg-slate-600 text-center select-none cursor-pointer align-middle rounded-lg text-gray-50;
 	}
 
 	.sidebar {
@@ -108,12 +106,15 @@
 	}
 
 	.modal-wrapper {
-		@apply fixed inset-0 z-30 flex items-center justify-center overflow-auto shadow-md 
-		  bg-slate-400 p-6 bg-opacity-20;
+		@apply fixed inset-0 z-30 flex items-center justify-center overflow-auto shadow-md
+		  bg-slate-400 bg-opacity-30;
 	}
 
 	.modal-content {
 		@apply p-5 mx-auto space-y-2 shadow-md w-80 bg-slate-800 rounded-md;
 	}
 
+	.tools-img {
+		@apply rounded-full;
+	}
 }
