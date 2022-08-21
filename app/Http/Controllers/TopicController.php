@@ -13,17 +13,13 @@ class TopicController extends Controller
 	public function index()
 	{
 		$user_stats = 	User_Stats::select('user_id', 'xp')->get();
-		$categories = Category::select(['name', 'slug', 'icon'])->get();
-
-		return view('topics.index', compact(
-			'categories',
-			'user_stats'
-		));
+		return view('topics.index', compact('user_stats'));
 	}
 
 	public function show(Topic $topic)
 	{
-		return view('topics.details', compact('topic'));
+		$answers = $topic->answers()->paginate(10);
+		return view('topics.details', compact('topic', 'answers'));
 	}
 
 	public function delete(Topic $topic)
