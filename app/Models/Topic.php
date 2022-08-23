@@ -10,7 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Topic extends Model
 {
 	use HasFactory;
+
 	protected $table = 'topics';
+	protected $fillable = [
+		"title",
+    "category_id",
+    "body"
+	];
 
 	public function user()
 	{

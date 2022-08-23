@@ -11,7 +11,7 @@ class allTopics extends Component
 
 	public function __construct()
 	{
-		$this->topics = Topic::paginate(5);
+		$this->topics = Topic::orderByDesc('created_at')->paginate(5);
 	}
 
 	public function render()

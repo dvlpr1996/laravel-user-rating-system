@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class categories extends Component
 {
     public $categories;
+
     public function __construct()
     {
 			$this->categories = Category::select(['name', 'slug', 'icon'])->get();

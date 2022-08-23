@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Topic;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,4 +17,5 @@ class Category extends Model
 	{
 		return $this->hasMany(Topic::class)->orderBy('created_at', 'desc');
 	}
+
 }

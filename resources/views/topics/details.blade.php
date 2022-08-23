@@ -63,7 +63,7 @@
 										</div>
 								</div>
 								<section class="my-5">
-										<x-topic :topic="$topic"></x-topic>
+									<x-topic :topic="$topic"></x-topic>
 								</section>
 
 								<div class="mt-5 grid grid-cols-12 items-center gap-3 sm:gap-0">

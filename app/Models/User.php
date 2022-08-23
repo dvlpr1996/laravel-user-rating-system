@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function topics()
 	{
-		return $this->hasMany(Topic::class);
+		return $this->hasMany(Topic::class)->orderByDesc('created_at');
 	}
 
 	public function user_stat()
