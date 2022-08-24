@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Answer;
 
 class Topic extends Model
 {
@@ -25,7 +26,7 @@ class Topic extends Model
 
 	public function answers()
 	{
-		return $this->hasMany(Answer::class);
+		return $this->hasMany(Answer::class)->orderByDesc('created_at');
 	}
 
 	public function category()

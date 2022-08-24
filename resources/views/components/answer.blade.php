@@ -47,17 +47,15 @@
 								</a>
 						</div>
 
-						<div>
-								<p>{{ $answer->body }}</p>
-
-								<hr @class([
-										'my-5',
-										'border-b' => $isActive,
-										'border-green-600' => $isActive,
-								])>
-						</div>
+						<p>{{ $answer->body }}</p>
 
 				</div>
+
+				<hr @class([
+					'my-5',
+					'border-b' => $isActive,
+					'border-green-600' => $isActive,
+			])>
 
 				<div class="mt-5 flex justify-between">
 						<a href="{{ route('categories.index', $answer->topic->category->slug) }}" class="tag">
@@ -92,22 +90,21 @@
 
 		@auth
 				<section class="my-16">
-						<div class="mx-auto mt-10 w-11/12 sm:w-9/12 md:w-6/12 lg:w-8/12">
-								<form class="space-y-3" method="POST" action="#">
-										<div>
-												<label>
-														your answer
-														<span class="text-sm text-rose-600">
-																<i class="ri-asterisk"></i>
-														</span>
-														<textarea class="form-control" cols="30" rows="5" name="msg" onclick="this.value=''">{{ old('msg') }}</textarea>
-												</label>
-										</div>
+						<form class="space-y-3" method="POST"
+						 action="{{ route('answer.store' , $topic->id) }}">
+							@csrf
+								<div class="w-full">
+										<label>
+												your answer
+												<textarea class="form-control" cols="30" rows="5" name="body"
+												placeholder="type your answer">
+													{{ old('body') }}
+												</textarea>
+										</label>
+								</div>
 
-										<button type="submit" class="btn">send it</button>
-
-								</form>
-						</div>
+								<button type="submit" class="btn w-full sm:max-w-max">send it</button>
+						</form>
 				</section>
 		@endauth
 @endforelse

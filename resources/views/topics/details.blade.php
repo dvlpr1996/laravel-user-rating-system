@@ -85,7 +85,7 @@
 								</div>
 
 								<section class="my-5 space-y-5">
-										<x-answer :answers="$answers"></x-answer>
+										<x-answer :answers="$answers" :topic="$topic"></x-answer>
 								</section>
 						</section>
 				</main>

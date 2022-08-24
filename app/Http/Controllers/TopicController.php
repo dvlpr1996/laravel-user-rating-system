@@ -37,7 +37,7 @@ class TopicController extends Controller
 	public function store(Request $request)
 	{
 		$validated = $request->validate([
-			'title' => ['required', 'alpha_num', 'min:4', 'max:64'],
+			'title' => ['required', 'string', 'min:4', 'max:64'],
 			'category_id' => ['required', Rule::in(['1', '2', '3', '4', '5', '6', '7'])],
 			'body'  => ['required', 'string', 'min:4', 'max:1024'],
 		]);

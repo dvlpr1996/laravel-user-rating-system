@@ -10,6 +10,7 @@ class Answer extends Model
 {
 	use HasFactory;
 	protected $table = 'answers';
+	protected $fillable = ['body' , 'user_id'];
 
 	public function user()
 	{
