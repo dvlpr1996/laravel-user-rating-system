@@ -7,26 +7,7 @@
 						<aside class="hidden space-y-5 md:block md:w-3/12 lg:w-2/12">
 								<div class="space-y-3">
 										<h4>related topics</h4>
-										<ul class="ml-2 space-y-3">
-												<li>
-														<a href="" class="line-clapm-1 text-base" title="">
-																<i class="fas fa-dot-circle"></i>
-																related topics related topics related topics
-														</a>
-												</li>
-												<li>
-														<a href="" class="line-clapm-1 text-base" title="">
-																<i class="fas fa-dot-circle"></i>
-																related topics related topics related topics
-														</a>
-												</li>
-												<li>
-														<a href="" class="line-clapm-1 text-base" title="">
-																<i class="fas fa-dot-circle"></i>
-																related topics related topics related topics
-														</a>
-												</li>
-										</ul>
+										<x-related-topics :topic="$topic"></x-related-topics>
 								</div>
 						</aside>
 
@@ -40,26 +21,7 @@
 										<div x-show="open" x-transition.duration.500ms
 												class="border-2 border-slate-700 absolute top-14 right-0 z-20 hidden w-full space-y-3 rounded-lg bg-slate-800 p-2 sm:min-w-[200px]"
 												x-bind:class="{ 'hidden': !open }">
-												<ul class="ml-2 space-y-4">
-														<li>
-																<a href="" class="line-clapm-1 cursor-pointer text-base" title="">
-																		<i class="fas fa-dot-circle"></i>
-																		related topics related topics related topics
-																</a>
-														</li>
-														<li>
-																<a href="" class="line-clapm-1 cursor-pointer text-base" title="">
-																		<i class="fas fa-dot-circle"></i>
-																		related topics related topics related topics
-																</a>
-														</li>
-														<li>
-																<a href="" class="line-clapm-1 cursor-pointer text-base" title="">
-																		<i class="fas fa-dot-circle"></i>
-																		related topics related topics related topics
-																</a>
-														</li>
-												</ul>
+												<x-related-topics :topic="$topic"></x-related-topics>
 										</div>
 								</div>
 								<section class="my-5">
