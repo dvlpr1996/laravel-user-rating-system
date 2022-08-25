@@ -12,6 +12,8 @@ Route::view('/', 'home')->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/topics/create', [TopicController::class, 'create'])->name('topics.create');
 	Route::post('/topics/store', [TopicController::class, 'store'])->name('topics.store');
+	Route::get('/topics/{topic}/edit', [TopicController::class, 'edit'])->name('topics.edit');
+	Route::put('/topics/{topic}/update', [TopicController::class, 'update'])->name('topics.update');
 	Route::get('/topics/delete/{topic}', [TopicController::class, 'delete'])->name('topics.delete');
 
 	Route::get('/answer/delete/{answer}', [AnswerController::class, 'delete'])->name('answer.delete');

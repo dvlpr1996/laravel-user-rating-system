@@ -48,6 +48,8 @@
 								@if ($topic->user->id == auth()->user()->id)
 										<a href="{{ route('topics.delete', $topic->id) }}" onclick="return confirm('Are you sure?')">delete
 										</a>
+
+										<a href="{{ route('topics.edit', $topic->id) }}">edit</a>
 								@endif
 						@endif
 
