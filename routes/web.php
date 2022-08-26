@@ -17,6 +17,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/topics/delete/{topic}', [TopicController::class, 'delete'])->name('topics.delete');
 
 	Route::get('/answer/delete/{answer}', [AnswerController::class, 'delete'])->name('answer.delete');
+	Route::put('/answer/{answer}/update', [AnswerController::class, 'update'])->name('answer.update');
 	Route::post('/topics/{topic}/answer', [AnswerController::class, 'store'])->name('answer.store');
 
 	Route::post('/reports', [ReportController::class, 'create'])->name('reports.create');

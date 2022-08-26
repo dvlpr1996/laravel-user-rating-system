@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use App\Http\Requests\AnswerFormRequest;
 
 class AnswerController extends Controller
 {
@@ -14,17 +15,19 @@ class AnswerController extends Controller
 		return back()->withToastSuccess('Your topics Successfully deleted');
 	}
 
-	public function store(Request $request, Topic $topic)
+	public function store(AnswerFormRequest $request, Topic $topic)
 	{
-		$validated = $request->validate([
-			'body'  => ['required', 'string', 'min:2', 'max:1024'],
-		]);
-
 		$topic->answers()->create([
 			'user_id' => auth()->user()->id,
-			'body' => $validated['body']
+			'body' => $request['body']
 		]);
 
 		return back()->withToastSuccess('Your answer Successfully sent');
+	}
+
+	public function update(AnswerFormRequest $request, Answer $answer)
+	{
+		$answer->update(['body' => $request['body']]);
+		return back()->withToastSuccess('Your answer Successfully updated');
 	}
 }

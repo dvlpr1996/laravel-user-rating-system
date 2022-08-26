@@ -66,6 +66,10 @@ html {
 	label {
 		@apply capitalize text-sm select-none;
 	}
+
+	a > i {
+		@apply hover:opacity-50;
+	}
 }
 
 @layer components {

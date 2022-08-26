@@ -52,10 +52,10 @@
 				</div>
 
 				<hr @class([
-					'my-5',
-					'border-b' => $isActive,
-					'border-green-600' => $isActive,
-			])>
+						'my-5',
+						'border-b' => $isActive,
+						'border-green-600' => $isActive,
+				])>
 
 				<div class="mt-5 flex justify-between">
 						<a href="{{ route('categories.index', $answer->topic->category->slug) }}" class="tag">
@@ -68,10 +68,35 @@
 
 								@if (isset(auth()->user()->id))
 										@if ($answer->user_id == auth()->user()->id)
-												<a href="{{ route('answer.delete', $answer->id) }}" onclick="return confirm('Are you sure?')">delete
+												<a href="{{ route('answer.delete', $answer->id) }}" onclick="return confirm('Are you sure?')"
+														class="cursor-pointer">
+														<i class="fas fa-trash ml-1"></i>
 												</a>
 										@endif
 								@endif
+
+								<div x-data="dropdown" x-on:click.away="away()" class="relative">
+										<i x-on:click="toggle()" class="fas fa-edit ml-1 cursor-pointer capitalize text-gray-50"></i>
+										<div x-show="open" x-transition.duration.500ms
+												class="absolute bottom-0 right-0 z-20 hidden space-y-3 rounded-lg border-2 border-slate-700 bg-slate-800 p-2 w-96"
+												x-bind:class="{ 'hidden': !open }">
+												<form class="space-y-3" method="POST"
+												 action="{{ route('answer.update', $answer->id) }}">
+													@csrf
+													@method('put')
+													
+													<div class="w-full">
+															<label>your new answer</label>
+															<textarea class="form-control" cols="30" rows="5" name="body" placeholder="type your answer">
+																{{ $answer->body }}
+															</textarea>
+													</div>
+					
+													<button type="submit" class="btn w-full sm:max-w-max">update it</button>
+											</form>
+										</div>
+								</div>
+
 						</div>
 				</div>
 
@@ -89,18 +114,14 @@
 		@endguest
 
 		@auth
-				<section class="my-16">
-						<form class="space-y-3" method="POST"
-						 action="{{ route('answer.store' , $topic->id) }}">
-							@csrf
+				<section>
+						<form class="space-y-3" method="POST" action="{{ route('answer.store', $topic->id) }}">
+								@csrf
 								<div class="w-full">
-										<label>
-												your answer
-												<textarea class="form-control" cols="30" rows="5" name="body"
-												placeholder="type your answer">
+										<label>your answer</label>
+										<textarea class="form-control" cols="30" rows="5" name="body" placeholder="type your answer">
 													{{ old('body') }}
-												</textarea>
-										</label>
+										</textarea>
 								</div>
 
 								<button type="submit" class="btn w-full sm:max-w-max">send it</button>
