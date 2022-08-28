@@ -23,7 +23,7 @@ class TopicController extends Controller
 
 	public function delete(Topic $topic)
 	{
-		Topic::where('id', $topic->id)->delete();
+		Topic::findOrFail($topic->id)->delete();
 		return redirect()->route('topics.index')->withToastSuccess('Your topics Successfully deleted');
 	}
 

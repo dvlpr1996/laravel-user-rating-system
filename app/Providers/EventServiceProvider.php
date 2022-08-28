@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Topic;
+use App\Models\Answer;
 use App\Observers\UserObserver;
+use App\Observers\TopicObserver;
+use App\Observers\AnswerObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -11,6 +15,12 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
+	protected $observers = [
+		User::class => [UserObserver::class],
+		Topic::class => [TopicObserver::class],
+		// Answer::class => [AnswerObserver::class],
+	];
+
 	/**
 	 * The event to listener mappings for the application.
 	 *
@@ -29,7 +39,6 @@ class EventServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		User::observe(UserObserver::class);
 	}
 
 	/**

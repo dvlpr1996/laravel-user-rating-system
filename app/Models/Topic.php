@@ -12,6 +12,8 @@ class Topic extends Model
 {
 	use HasFactory;
 
+	const XP = 5;
+
 	protected $table = 'topics';
 	protected $fillable = [
 		"title",
