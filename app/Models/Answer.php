@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
 	use HasFactory;
+
+	const XP = 2;
+
 	protected $table = 'answers';
 	protected $fillable = ['body' , 'user_id'];
 

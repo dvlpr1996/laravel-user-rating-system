@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User_Stats;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -74,7 +75,32 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function getCreatedAtAttribute()
 	{
-			return (new Carbon($this->attributes['created_at']))->diffForHumans();
+		return (new Carbon($this->attributes['created_at']))->diffForHumans();
 	}
 
+	public function incrementXp($number)
+	{
+		$this->user_stat->xp += $number;
+		$this->user_stat->save();
+	}
+
+	public function decrementXp($number)
+	{
+		$this->user_stat->xp -= $number;
+		$this->user_stat->save();
+	}
+
+	public function incrementColumnCount(string $colName, int $count)
+	{
+		$this->user_stat->increment($colName, $count);
+		$this->user_stat->save();
+	}
+
+	public function decrementColumnCount(string $colName, int $count)
+	{
+		if ($this->user_stat->$colName !== 0) {
+			$this->user_stat->decrement($colName, $count);
+			$this->user_stat->save();
+		}
+	}
 }

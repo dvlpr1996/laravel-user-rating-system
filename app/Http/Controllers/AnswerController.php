@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use App\Models\Answer;
-use Illuminate\Http\Request;
 use App\Http\Requests\AnswerFormRequest;
 
 class AnswerController extends Controller
 {
 	public function delete(Answer $answer)
 	{
-		Answer::where('id', $answer->id)->delete();
+		Answer::findOrFail($answer->id)->delete();
 		return back()->withToastSuccess('Your topics Successfully deleted');
 	}
 
