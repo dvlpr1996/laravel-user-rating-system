@@ -36,8 +36,7 @@ class TopicController extends Controller
 	public function store(TopicFormRequest $request)
 	{
 		$topic = auth()->user()->topics()->create($request->all());
-		return redirect()->route('topics.show', $topic)
-			->withToastSuccess('Your topics Successfully created');
+		return redirect()->route('topics.show', $topic)->withToastSuccess('Your topics Successfully created');
 	}
 
 	public function update(TopicFormRequest $request, Topic $topic)
@@ -49,8 +48,7 @@ class TopicController extends Controller
 			'category_id' => $request->category_id
 		]);
 
-		return redirect()->route('topics.show', $topic->id)
-			->withToastSuccess('Your topics Successfully updated');
+		return redirect()->route('topics.show', $topic->id)->withToastSuccess('Your topics Successfully updated');
 	}
 
 	public function edit(Topic $topic)

@@ -10,6 +10,8 @@ class AnswerObserver
 	{
 		$answer->user->incrementXp(Answer::XP);
 		$answer->user->incrementColumnCount('answer_count', 1);
+
+		$answer->vote()->create(['topic_id' => $answer->topic->id]);
 	}
 
 	public function deleted(Answer $answer)

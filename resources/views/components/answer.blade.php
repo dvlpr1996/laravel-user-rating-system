@@ -36,13 +36,13 @@
 
 				<div class="flex items-center gap-6">
 						<div class="flex flex-col items-center gap-6">
-								<a href="#" class="select-none hover:text-green-600">
+								<a href="{{ route('like', $answer->id) }}" class="select-none hover:text-green-600">
 										<i class="fas fa-thumbs-up"></i>
 								</a>
 
-								<span>0</span>
+								<span>{{ $answer->vote->vote }}</span>
 
-								<a href="#" class="select-none hover:text-red-600">
+								<a href="{{ route('dislike', $answer->id) }}" class="select-none hover:text-red-600">
 										<i class="fas fa-thumbs-down"></i>
 								</a>
 						</div>
@@ -78,22 +78,21 @@
 								<div x-data="dropdown" x-on:click.away="away()" class="relative">
 										<i x-on:click="toggle()" class="fas fa-edit ml-1 cursor-pointer capitalize text-gray-50"></i>
 										<div x-show="open" x-transition.duration.500ms
-												class="absolute bottom-0 right-0 z-20 hidden space-y-3 rounded-lg border-2 border-slate-700 bg-slate-800 p-2 w-96"
+												class="absolute bottom-0 right-0 z-20 hidden w-96 space-y-3 rounded-lg border-2 border-slate-700 bg-slate-800 p-2"
 												x-bind:class="{ 'hidden': !open }">
-												<form class="space-y-3" method="POST"
-												 action="{{ route('answer.update', $answer->id) }}">
-													@csrf
-													@method('put')
-													
-													<div class="w-full">
-															<label>your new answer</label>
-															<textarea class="form-control" cols="30" rows="5" name="body" placeholder="type your answer">
+												<form class="space-y-3" method="POST" action="{{ route('answer.update', $answer->id) }}">
+														@csrf
+														@method('put')
+
+														<div class="w-full">
+																<label>your new answer</label>
+																<textarea class="form-control" cols="30" rows="5" name="body" placeholder="type your answer">
 																{{ $answer->body }}
 															</textarea>
-													</div>
-					
-													<button type="submit" class="btn w-full sm:max-w-max">update it</button>
-											</form>
+														</div>
+
+														<button type="submit" class="btn w-full sm:max-w-max">update it</button>
+												</form>
 										</div>
 								</div>
 
@@ -101,6 +100,7 @@
 				</div>
 
 		</div>
+
 @empty
 		@guest
 				<div class="rounded-lg bg-slate-500 p-5 text-center">
@@ -112,22 +112,22 @@
 						</p>
 				</div>
 		@endguest
-
-		@auth
-				<section>
-						<form class="space-y-3" method="POST" action="{{ route('answer.store', $topic->id) }}">
-								@csrf
-								<div class="w-full">
-										<label>your answer</label>
-										<textarea class="form-control" cols="30" rows="5" name="body" placeholder="type your answer">
-													{{ old('body') }}
-										</textarea>
-								</div>
-
-								<button type="submit" class="btn w-full sm:max-w-max">send it</button>
-						</form>
-				</section>
-		@endauth
 @endforelse
 
 {{ $answers->links('layouts.pagination') }}
+
+@auth
+		<section>
+				<form class="space-y-3" method="POST" action="{{ route('answer.store', $topic->id) }}">
+						@csrf
+						<div class="w-full">
+								<label>your answer {{ auth()->user()->fullName }} to this topic</label>
+								<textarea class="form-control" cols="30" rows="5" name="body" placeholder="type your answer">
+									{{ old('body') }}
+						</textarea>
+						</div>
+
+						<button type="submit" class="btn w-full sm:max-w-max">send it</button>
+				</form>
+		</section>
+@endauth

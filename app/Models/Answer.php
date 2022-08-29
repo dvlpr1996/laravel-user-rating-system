@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Vote;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Answer extends Model
 {
@@ -23,6 +24,11 @@ class Answer extends Model
 	public function topic()
 	{
 		return $this->belongsTo(Topic::class);
+	}
+
+	public function vote()
+	{
+		return $this->hasOne(Vote::class);
 	}
 
 	public function getCreatedAtAttribute()
