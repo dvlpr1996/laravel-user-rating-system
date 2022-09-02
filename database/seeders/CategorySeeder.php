@@ -32,7 +32,7 @@ class CategorySeeder extends Seeder
 			],
 			'web design' => [
 				'slug' => 'web-design',
-				'icon' => 'fas fa-browser'
+				'icon' => 'fab fa-html5'
 			],
 			'mysql' => [
 				'slug' => 'mysql',

@@ -9,7 +9,8 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::table('votes', function (Blueprint $table) {
-			$table->foreignId('topic_id')->constrained('topics');
+			$table->foreignId('topic_id')->constrained('topics')->onUpdate('cascade')
+			->onDelete('cascade');
 		});
 	}
 

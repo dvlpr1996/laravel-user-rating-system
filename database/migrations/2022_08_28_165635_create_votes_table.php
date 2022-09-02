@@ -10,7 +10,8 @@ return new class extends Migration
 	{
 		Schema::create('votes', function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->foreignId('answer_id')->constrained('answers');
+			$table->foreignId('answer_id')->constrained('answers')->onUpdate('cascade')
+			->onDelete('cascade');
 			$table->tinyInteger('vote')->default(0);
 			$table->timestamps();
 		});
