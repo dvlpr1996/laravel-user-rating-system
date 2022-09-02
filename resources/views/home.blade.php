@@ -23,8 +23,9 @@
 				<section class="mx-auto max-w-5xl space-y-10 text-center">
 						<h2>description</h2>
 						<p class="capitalize text-xl leading-9">
-								this laravel project is a Laravel User Rating System (online discussion site). where user can hold conversations
-								in the form of posted messages and they can get badge based on their xp
+							online discussion site is a Laravel User Rating project,
+              where user can create conversations or create answer to other topics and get badge based on their xp.
+							in this project for Access permissions only use gate just for practicing laravel gates.
 						</p>
 
 						<a href="{{ route('topics.index') }}" class="btn mx-auto max-w-max py-3 px-9">
