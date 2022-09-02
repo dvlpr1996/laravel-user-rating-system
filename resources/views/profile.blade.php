@@ -14,27 +14,25 @@
 
 								</div>
 
-								<div class="mt-5 flex flex-col sm:flex-row gap-3 items-center justify-between">
-										@if (isset(auth()->user()->slug))
-												@if ($userName->slug == auth()->user()->slug)
-														<a href="{{ route('topics.create') }}" class="btn w-[initial]">
-																new topics
-														</a>
-												@endif
-										@endif
+								<div class="mt-5 flex flex-col items-center justify-between gap-3 sm:flex-row">
+										@can('addTopic', $userName)
+												<a href="{{ route('topics.create') }}" class="btn w-[initial]">
+														new topics
+												</a>
+										@endcan
 										<p>date of join {{ $userName->CreatedAt }}</p>
 								</div>
 						</header>
 
 						<div class="mt-5 rounded-lg bg-slate-800 p-5">
 								<ul class="flex flex-col flex-wrap items-center justify-evenly gap-5 text-gray-300 sm:flex-row lg:flex-nowrap">
-										<li class="text-2xl hover:cursor-pointer text-gray-100">
+										<li class="text-2xl text-gray-100 hover:cursor-pointer">
 												<a href="{{ route('profile.index', $userName->slug) }}">
 														topics :
-														{{ $userName->user_stat->topic_count ?? 0}}
+														{{ $userName->user_stat->topic_count ?? 0 }}
 												</a>
 										</li>
-										<li class="text-2xl hover:cursor-pointer text-gray-100">
+										<li class="text-2xl text-gray-100 hover:cursor-pointer">
 												<a href="{{ route('profile.badge', $userName->slug) }}">
 														xp :
 														{{ $userName->user_stat->xp ?? 0 }}
@@ -42,10 +40,10 @@
 										</li>
 
 										<li class="text-2xl">
-											answers : {{ $userName->user_stat->answer_count ?? 0}}
+												answers : {{ $userName->user_stat->answer_count ?? 0 }}
 										</li>
 										<li class="text-2xl">
-											best answers : {{ $userName->user_stat->best_count ?? 0}}
+												best answers : {{ $userName->user_stat->best_count ?? 0 }}
 										</li>
 								</ul>
 						</div>
@@ -53,19 +51,19 @@
 
 						<section class="my-5 space-y-5">
 								<h2>
-									<i class="fas fa-question-circle"></i>
-									all topics
+										<i class="fas fa-question-circle"></i>
+										all topics
 								</h2>
 
 								@forelse ($userTopics as $topic)
 										<x-topic :topic="$topic"></x-topic>
 								@empty
-										<div class="rounded-lg bg-slate-600 p-5 text-center">
+										<div class="rounded-lg bg-slate-700 p-5 text-center">
 												<!!>no topics here yet for this category!!
-												<a href="{{ route('topics.create') }}" class="cursor-pointer underline underline-offset-8">
-													create once
-												</a>
-											</p>
+														<a href="{{ route('topics.create') }}" class="cursor-pointer underline underline-offset-8">
+																create once
+														</a>
+														</p>
 										</div>
 								@endforelse
 								{{ $userTopics->links('layouts.pagination') }}

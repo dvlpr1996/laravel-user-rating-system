@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use App\Models\Category;
 use App\Models\User_Stats;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\TopicFormRequest;
 
 class TopicController extends Controller
@@ -41,6 +42,9 @@ class TopicController extends Controller
 
 	public function update(TopicFormRequest $request, Topic $topic)
 	{
+		if (!Gate::allows('editTopic', $topic))
+			abort(403);
+
 		$topic->update([
 			'user_id' => auth()->user()->id,
 			'title' => $request->title,
@@ -53,6 +57,9 @@ class TopicController extends Controller
 
 	public function edit(Topic $topic)
 	{
+		if (!Gate::allows('editTopic', $topic))
+			abort(403);
+
 		$categories = Category::select(['id', 'name', 'slug'])->get();
 		return view('topics.edit', compact('categories', 'topic'));
 	}

@@ -24,6 +24,7 @@
 														</div>
 												</div>
 										@empty
+										<p>not top xp user found</p>
 										@endforelse
 								</div>
 

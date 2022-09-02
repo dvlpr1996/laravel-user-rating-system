@@ -35,5 +35,15 @@ class AuthServiceProvider extends ServiceProvider
 				: Response::deny('You must login first.');
 		});
 
+		// topic gates
+		Gate::define('addTopic', function (User $user, User $userName) {
+			return auth()->user()->slug === $userName->slug ? Response::allow()
+				: Response::deny('You must login first.');
+		});
+
+		Gate::define('editTopic', function (User $user, Topic $topic) {
+			return auth()->user()->id === $topic->user->id ? Response::allow()
+				: Response::deny('You must login first.');
+		});
 	}
 }
